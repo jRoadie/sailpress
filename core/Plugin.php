@@ -3,18 +3,30 @@ namespace sailpress\core;
 
 abstract class Plugin {
 
-    private $config = [];
+    private $name;
+    private $version;
+    private $baseDir;
+    private $baseUrl;
+    private $pluginFile;
 
-    private static function __construct() {
+    private function __construct() {
 
     }
 
     public static function instance($subclass) {
-        $instance = self::$_instances[$subclass];
+        $instance = SailPress()->plugin($subclass);
         if(!$instance) {
-            $instance = self::$_instances[$subclass] = new $subclass;
+            $instance = SailPress()->plugin($subclass, new $subclass);
         }
         return $instance;
+    }
+
+    public function name($value = null) {
+        $this->prop(__FUNCTION__);
+    }
+
+    private function prop($prop) {
+
     }
 
 }
