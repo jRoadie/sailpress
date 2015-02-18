@@ -9,4 +9,10 @@
  * License:           MIT
  */
 
-require_once 'SailPress.php';
+function load_sailpress() {
+    if(!class_exists('SailPress')) {
+        require_once 'SailPress.php';
+    }
+}
+
+add_action('plugins_loaded', 'load_sailpress');
